@@ -56,6 +56,12 @@ return [
             'throw' => false,
         ],
 
+        'gcs' => [
+            'driver' => 'gcs',
+            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
+            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', null),
+            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket-name'),
+        ],
     ],
 
     /*
