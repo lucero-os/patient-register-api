@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 use App\Models\Patient;
+use App\Utils\CloudStorageUtil;
 
 class PatientService{
     /**
@@ -30,7 +31,7 @@ class PatientService{
         try{
             //Upload to google platform
             $photoPath = 'patients/patient_'.$patient->id;
-            Storage::disk('gcs')->put($photoPath, file_get_contents($photo));
+            CloudStorageUtil::storeImage($phto, $photoPath);
         }catch(\Exception $e){
             \Log::debug('PatientService::register - error uploading photo to google cloud services');
             throw $e;
