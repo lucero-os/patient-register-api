@@ -17,8 +17,7 @@ class PatientController extends Controller
             'name'  => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|regex:/^\d{10}$/',
-            // 'photo' => 'required|image|mimes:jpeg,png|max:2048', // Max file size: 2MB
-            'photo' => 'image|mimes:jpeg,png|max:2048', // Max file size: 2MB
+            'photo' => 'required|image|mimes:jpeg,png|max:2048', // Max file size: 2MB
         ], [
             'name.required'     => trans('bs_patient.validation.name.required'),
             'email.required'    => trans('bs_patient.validation.email.required'),
@@ -39,6 +38,10 @@ class PatientController extends Controller
         \DB::beginTransaction();
 
         try{
+            //Check patient is not registered
+            $p = Patient::where('email', $data['email'])->first();
+            if($p) throw new CustomException(trans('bs_patient.already_registered', array('email' => $data['email'])));
+
             $patientService = new \PatientService();
             $patient = $patientService->register(
                 $data['name'],

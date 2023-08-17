@@ -2,6 +2,7 @@
 
 return array(
     'registered_successfuly' => 'O paciente foi registrado com sucesso',
+    'already_registered' => 'Já existe um paciente para o e-mail :email',
     'validation' => array(
         'name' => array(
             'required' => 'O campo de nome é obrigatório.',

@@ -1,6 +1,8 @@
 <?php
 
 return array(
+    'registered_successfuly' => 'The patient has been registered successfuly',
+    'already_registered' => 'Patient with email :email already exists',
     'validation' => array(
         'name' => array(
             'required' => 'The name field is required.',
