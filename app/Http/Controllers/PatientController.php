@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Services\PatientService;
+use App\Http\Services\Notifications\NotificationService;
 use App\Models\Patient;
 use App\Exceptions\CustomException;
 
@@ -42,7 +44,7 @@ class PatientController extends Controller
             $p = Patient::where('email', $data['email'])->first();
             if($p) throw new CustomException(trans('bs_patient.already_registered', array('email' => $data['email'])));
 
-            $patientService = new \PatientService();
+            $patientService = new PatientService();
             $patient = $patientService->register(
                 $data['name'],
                 $data['email'], 
@@ -50,7 +52,7 @@ class PatientController extends Controller
                 $data['photo']
             );
 
-            $notificationService = new \NotificationService('new_patient');
+            $notificationService = new NotificationService('new_patient');
             $notificationService->notify($data);
         }catch(\Exception $e){
             \DB::rollback();

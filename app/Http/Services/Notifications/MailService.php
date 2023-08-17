@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Services\Notifications;
+use App\Models\EmailNotification;
+
 class MailService implements iNotificationStrategy{
     
     public function notify($data){
@@ -7,7 +10,7 @@ class MailService implements iNotificationStrategy{
         Mail::to($data['email'])->queue(new BaseMail($data));
 
         //Save patient notification
-        $patientNotification = new \EmailNotification();
+        $patientNotification = new EmailNotification();
         $patientNotification->destinatary_email = $data['email'];
         $patientNotification->notification_id = $this->notification->id;
         $patientNotification->save();

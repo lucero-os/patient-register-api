@@ -1,12 +1,15 @@
 <?php
 
+namespace App\Http\Services\Notifications;
+use App\Http\Services\MailService;
+use App\Models\Notification;
 
 class NotificationService{
     protected $notification;
 
     __construct($notificationCode)
     {
-        $this->notification = \Notification::where('notification_code', $notificationCode)->first();
+        $this->notification = Notification::where('notification_code', $notificationCode)->first();
     }
 
     private function getNotificationService($notificationTypeCode)
