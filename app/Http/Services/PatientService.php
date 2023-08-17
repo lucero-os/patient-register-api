@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Http\Services;
+use App\Models\Patient;
+
 class PatientService{
     /**
      * Registers new patient
@@ -18,10 +21,10 @@ class PatientService{
     {
         \Log::debug('PatientService::register - start registering '.$name);
 
-        $patient = new \Patient();
+        $patient = new Patient();
         $patient->patient_name = $name;
-        $patient->patient_name = $email;
-        $patient->patient_name = $phone;
+        $patient->patient_email = $email;
+        $patient->patient_phone = $phone;
         $patient->save();
 
         try{
