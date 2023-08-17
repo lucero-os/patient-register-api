@@ -12,3 +12,5 @@ Endpoint: POST localhost/api/patient with body:
 }
 
 Accepts header "Accept-Language" to set response language (Only en, es & pt available)
+
+Attached class diagram (patient-register-diagram.png) and recommended solution for Notification Management (recommendedNotificationService.png)
